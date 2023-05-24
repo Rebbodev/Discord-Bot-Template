@@ -21,7 +21,7 @@ export class IEventsHandler {
 
     //Sorts Guild and App Commands <3
     // eslint-disable-next-line sonarjs/cognitive-complexity
-    async sortCommands() {
+    private async sortCommands() {
         for (const command of this.options.Commands) {
             // If Guild Command If Statement Start
             if (command.config.guildOnly) {
@@ -91,7 +91,7 @@ export class IEventsHandler {
     }
 
     //Cleans Up Commands Automatically
-    async cleanupCommands() {
+    private async cleanupCommands() {
         //Cleaning Up Guild Commands
         const confirmedGuilds = [];
 
@@ -131,7 +131,7 @@ export class IEventsHandler {
         });
     }
 
-    async launchEvents() {
+    public async launchEvents() {
         for (const event of this.options.Events) {
             this.options.Client.on(event.eventName, event.callback);
         }

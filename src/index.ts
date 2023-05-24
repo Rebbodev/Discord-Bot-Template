@@ -1,8 +1,14 @@
 import { config } from 'dotenv';
+import pgPromise from 'pg-promise';
+import pg from 'pg-promise/typescript/pg-subset';
 
 import { EventHandler } from './Events/builder';
 import { djsClient } from './handler/client/djs-client';
+import { runPgsql } from './SQL/PgSQL/connection';
+import { pgsqlCon1 } from './SQL/PgSQL/databases/pgsql1';
 config();
+
+export let database: pgPromise.IDatabase<{}, pg.IClient> | undefined;
 
 (async () => {
     await djsClient
@@ -26,5 +32,7 @@ config();
         );
 
         EventHandler.launchEvents();
+
+        database = await runPgsql(pgsqlCon1);
     });
 })();

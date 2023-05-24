@@ -16,6 +16,7 @@ export const serverInfo: Command = {
     config: {},
     callback: async (
         interaction: ChatInputCommandInteraction,
+        // eslint-disable-next-line unused-imports/no-unused-vars
         client: Client
     ) => {
         const { guild } = interaction;
